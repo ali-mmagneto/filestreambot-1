@@ -17,7 +17,7 @@ db = Database(Var.DATABASE_URL, Var.SESSION_NAME)
 broadcast_ids = {}
 
 
-@StreamBot.on_message(filters.command("status") & filters.private & filters.user(Var.OWNER_ID) & ~filters.edited)
+@StreamBot.on_message(filters.command("status") & filters.private & filters.user(Var.OWNER_ID))
 async def sts(c: Client, m: Message):
     total_users = await db.total_users_count()
     await m.reply_text(text=f"**Total Users in DB:** `{total_users}`", parse_mode=ParseMode.MARKDOWN, quote=True)
